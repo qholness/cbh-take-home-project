@@ -26,7 +26,9 @@ exports.deterministicPartitionKey = (event) => {
     code is to return a hashed string but
     this logic forces returning of event.partitionKey (if it is not a string)
     or TRIVIAL_PARTITION_KEY.
-    This is a refactor of the original logic but it seems incorrectly implemented? */
+    This is a refactor of the original logic but it seems incorrectly implemented?
+    It looks like this code presumes createHash does not return
+    a string when it actually does and tries to coerce it.*/
     // candidate = typeof candidate !== "string" ?
     //   JSON.stringify(candidate) : TRIVIAL_PARTITION_KEY;    
     /**This line ^ **/
