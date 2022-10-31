@@ -11,7 +11,7 @@ You will be graded on the exhaustiveness and quality of your unit tests, the dep
 ## Your Explanation Here
 Major choices:
 -- Altered decision tree to be more concise. Many if statements made the code a bit hard to follow so I reduced their usage and eliminated some redundancy.
--- Removed MAX_PARTITION_KEY_LENGTH since encryption has a fixed output length of 128.
--- 
-Question:
--- 
+-- Moved MAX_PARTITION_KEY_LENGTH checking to only check event with "partitionKey"s since hashed data returns fixed output.
+-- Had some questions about string coercion (lines 17-23 in the original dpk.js). It coerces non-string candidates and coerced hashed strings to the TRIVIAL_PARTITION_KEY. Is this intentional? The logic here is a bit confusing as it also made the subsequent MAX_PARTITION_LENGTH check obsolete.
+
+In summary, pulled out redundant code and made event processing it's own function for testability.
